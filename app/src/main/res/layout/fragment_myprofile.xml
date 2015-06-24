@@ -1,0 +1,303 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/app_background">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/app_background">
+
+        <LinearLayout
+            android:id="@+id/center_linear"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+
+            android:layout_below="@+id/reg_top_relative"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/mp_email"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_username"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_password"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:hint="@string/sign_password"
+                android:inputType="textPassword"
+                android:paddingLeft="15dp"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_confirmpassword"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:hint="@string/sign_confirm_password"
+                android:inputType="textPassword"
+                android:paddingLeft="15dp"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <EditText
+                android:id="@+id/mp_firstname"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_firstname"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_lastname"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_lastname"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_sex"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:clickable="true"
+                android:ems="10"
+                android:hint="@string/sign_sex"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_birthday"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_birthday"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_address"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_address"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_city"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_city"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_postcode"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_postcode"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+            <EditText
+                android:id="@+id/mp_country"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_country"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
+
+
+            <EditText
+                android:id="@+id/mp_courses"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:ems="10"
+                android:hint="@string/sign_courses"
+                android:imeOptions="actionDone"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor"
+                android:windowSoftInputMode="stateHidden|adjustResize">
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:background="#929197" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/mp_submit_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/center_linear"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/login_btn_rounded_corner"
+            android:text="@string/mp_submit"
+            android:textColor="@color/google_white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+</ScrollView>
