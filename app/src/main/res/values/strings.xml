@@ -51,6 +51,7 @@
     <string name="sign_lastname">Last Name</string>
     <string name="sign_sex">Sex</string>
     <string name="sign_birthday">Birth Day</string>
+    <string name="sign_phone">Phone</string>
     <string name="sign_address">Address</string>
     <string name="sign_city">City</string>
     <string name="sign_postcode">Post Code</string>

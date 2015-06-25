@@ -17,6 +17,8 @@ import com.appnometry.appnomars.R;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.util.ApiImplementation;
+import com.appnometry.appnomars.util.HTTPHandler;
+import com.appnometry.appnomars.util.HTTPPostHelper;
 import com.appnometry.appnomars.util.HttpRequest;
 import com.appnometry.appnomars.util.JsonUtility;
 import com.appnometry.appnomars.util.PersistUser;
@@ -77,6 +79,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 if (emptyCheck()) {
                         String url = apiImplementation.GenarateFullURLforLogin(email_edittext.getText().toString(),
                                 password_edittext.getText().toString(), "Android", PersistUser.getPushId(context));
+                    /*HTTPPostHelper url = ApiImplementation.getLogin(email_edittext.getText().toString(),
+                            password_edittext.getText().toString(), "Android", PersistUser.getPushId(context));*/
                         new LoginAsync().execute(url);
 
                 } else {
@@ -105,6 +109,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     }
     /*********************************Async Task For User Login*****************************/
+
     private class LoginAsync extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -161,5 +166,56 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     }
 
+    /**
+     * ******************************Async Task For User Login POST METHOD****************************
+     */
+    protected void loadLoginData(final HTTPPostHelper url) {
 
+        (new AsyncTask() {
+            @Override
+            protected void onPreExecute() {
+                // TODO Auto-generated method stub
+                super.onPreExecute();
+                progressDialog.show();
+
+            }
+
+            @Override
+            protected Object doInBackground(Object... params) {
+                // TODO Auto-generated method stub
+
+                try {
+                    Log.i("Login URL async ", "" + url);
+                    //results = HttpRequest.GetText(HttpRequest.getInputStreamForGetRequest(params[0]));
+                    results = HTTPHandler.GetPostDataFromURL(url);
+                    Log.i("results ", "" + results);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object result) {
+                // TODO Auto-generated method stub
+                super.onPostExecute(result);
+                if (jsonUtility.loginParser(results, context).equalsIgnoreCase("Success")) {
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    progressDialog.dismiss();
+                    AlertDialogHelper.showAlert(context, jsonUtility.loginParser(results, context));
+                }
+
+                progressDialog.dismiss();
+
+            }
+
+        }).execute();
+
+
+    }
 }

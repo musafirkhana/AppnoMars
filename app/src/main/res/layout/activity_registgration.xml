@@ -191,7 +191,28 @@
 
                 <requestFocus />
             </EditText>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#929197" />
 
+            <EditText
+                android:id="@+id/su_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:alpha="0.4"
+                android:background="#000"
+                android:inputType="phone"
+                android:ems="10"
+                android:hint="@string/sign_phone"
+                android:imeOptions="actionNext"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/google_white"
+                android:textColorHint="@color/edtitext_hintcolor">
+
+                <requestFocus />
+            </EditText>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"

@@ -64,6 +64,7 @@ public class RegistgrationActivity extends Activity implements View.OnClickListe
     private EditText su_postcode;
     private EditText su_country;
     private EditText su_address;
+    private EditText su_phone;
     private Button login_btn;
     private CheckBox su_terms_checkbox;
     private TextView termsCondition,su_login;
@@ -92,6 +93,7 @@ public class RegistgrationActivity extends Activity implements View.OnClickListe
         su_country = (EditText) findViewById(R.id.su_country);
         su_city = (EditText) findViewById(R.id.su_city);
         su_login=(TextView)findViewById(R.id.su_login);
+        su_phone=(EditText)findViewById(R.id.su_phone);
 
 
         termsCondition = (TextView) findViewById(R.id.terms_condition);
@@ -221,6 +223,16 @@ public class RegistgrationActivity extends Activity implements View.OnClickListe
         }
         su_address.setError(null);
 
+        if (su_phone.getText().toString().trim().length() == 0) {
+            AlertDialogHelper.showAlert(context, "Phone required");
+            su_phone.setError("Phone required");
+            return false;
+        }
+        su_phone.setError(null);
+
+
+
+
         return true;
 
 
@@ -239,7 +251,8 @@ public class RegistgrationActivity extends Activity implements View.OnClickListe
                            su_firstname.getText().toString().trim(),
                            su_lastname.getText().toString().trim(),
                            su_email.getText().toString().trim(),
-                           su_password.getText().toString().trim(), "Phone",
+                           su_password.getText().toString().trim(),
+                           su_phone.getText().toString().trim(),
                            su_postcode.getText().toString().trim(),
                            su_address.getText().toString().trim(),
                            su_city.getText().toString().trim(),

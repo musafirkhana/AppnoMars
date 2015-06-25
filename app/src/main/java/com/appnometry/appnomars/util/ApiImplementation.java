@@ -1,14 +1,22 @@
 package com.appnometry.appnomars.util;
 
+import android.util.Log;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApiImplementation {
 
-    public String baseURL = "http://192.168.1.12/appnometry_webapp/www/RESTApi/public/rest";
+    public static String baseURL = "http://192.168.1.12/appnometry_webapp/www/RESTApi/public/rest";
 
     private final String route = "route=api/login";
     private final String menRoute = "route=api/category";
     private final String registerRoute = "users/registration";
     private final String forgotPasswordRoute = "route=api/forgotten";
-    private final String loginRoute="users/login";
+    private static final String loginRoute="users/login";
     private final String newsfeedRoute="items/user";
 
 
@@ -60,6 +68,23 @@ public class ApiImplementation {
 
         return baseURL + "/" + loginRoute + "?email=" + email
                 + "&password=" + password + "&platform=" + platform + "&dtoken=" + regid + "&is_push_enable=" + "1";
+    }
+
+
+    public static HTTPPostHelper getLogin(String email, String password,
+                                          String platform, String regid) {
+        String join_BaseUrl = baseURL + "/" + loginRoute;
+        final List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("email", "" + email));
+        nvps.add(new BasicNameValuePair("password", "" + password));
+        nvps.add(new BasicNameValuePair("platform", "" + platform));
+        nvps.add(new BasicNameValuePair("dtoken", "" + regid));
+        nvps.add(new BasicNameValuePair("is_push_enable", "" + "1"));
+        Log.i("Login URL Is ", "" + nvps);
+        final HTTPPostHelper helper = new HTTPPostHelper(join_BaseUrl, nvps);
+        Log.i("Login URL Is ", "" + helper);
+        return helper;
+
     }
 
     //login by facebook
