@@ -42,7 +42,7 @@
     <color name="refresh_progress_2">@color/accent_color_dark</color>
     <color name="refresh_progress_3">@color/primary_color</color>
 
-
+    <color name="bottom_select">#80000000</color>
 
     <color name="windowBackgroundColor">#333333</color>
     <color name="black_translucent">#80000000</color>

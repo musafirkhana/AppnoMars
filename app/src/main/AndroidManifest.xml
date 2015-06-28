@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.appnometry.appnomars" >
+    package="com.appnometry.appnomars">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- GCM Permissions - Start here  -->
-
+    <!-- GCM Permissions - Start here -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <permission
         android:name="com.appnometry.appnomars.C2D_MESSAGE"
@@ -16,19 +16,25 @@
 
     <uses-permission android:name="com.prgguru.example.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.appnometry.appnomars.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <!-- GCM Permissions - End here  -->
+    <!-- GCM Permissions - End here -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!--Google MAP API key-->
+
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activities.SplashActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,24 +61,26 @@
             android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".intro.CustomIntro"
             android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activities.VunueListActivity"
-            android:label="@string/title_activity_vunue_list" >
-        </activity>
-
-
+            android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.CouponDetailActivity"
+            android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
         <!-- Register Broadcast receiver -->
 
         <receiver
-            android:name="com.appnometry.appnomars.GCM.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:name=".GCM.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
@@ -83,11 +91,16 @@
 
         <!-- Register Service -->
 
-        <service android:name="com.appnometry.appnomars.GCM.GCMNotificationIntentService" />
+        <service android:name=".GCM.GCMNotificationIntentService" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCvNVZ9D9ou2ZO5g6sa5cC3sItuhUjUcY4" />
     </application>
 
 </manifest>

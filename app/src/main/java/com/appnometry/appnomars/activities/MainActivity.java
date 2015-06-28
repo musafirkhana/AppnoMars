@@ -16,16 +16,13 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -44,7 +41,7 @@ import com.appnometry.appnomars.fragments.EventsFragment;
 import com.appnometry.appnomars.fragments.LocationFragment;
 import com.appnometry.appnomars.fragments.MyprofileFragment;
 import com.appnometry.appnomars.fragments.NewsFeedFragment;
-import com.appnometry.appnomars.fragments.SearchFragment;
+import com.appnometry.appnomars.fragments.ShopFragment;
 import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.ui.Items;
 import com.appnometry.appnomars.ui.MultiSwipeRefreshLayout;
@@ -212,7 +209,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         break;
                     case 6:
                         action_search.setVisibility(View.GONE);
-                        Toast.makeText(context, "Shop Clicked", Toast.LENGTH_SHORT).show();
+                        fragment = new ShopFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;
                     case 7:
@@ -243,7 +240,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     /**
-     * ***************For Search Menu Initilization*********************
+     * ***************For Search Menu Initialization*********************
      */
     private void initActionBerMenu() {
 

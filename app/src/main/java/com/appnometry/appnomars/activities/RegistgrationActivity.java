@@ -27,6 +27,7 @@ import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.util.ApiImplementation;
 import com.appnometry.appnomars.util.AppConstant;
+import com.appnometry.appnomars.util.CommonUtils;
 import com.appnometry.appnomars.util.HttpRequest;
 import com.appnometry.appnomars.util.SharedPreferencesHelper;
 
@@ -368,7 +369,7 @@ public class RegistgrationActivity extends Activity implements View.OnClickListe
                         Calendar choosen = Calendar.getInstance();
                         choosen.set(datePicker.getYear(), datePicker.getMonth(),datePicker.getDayOfMonth()
                         );
-                        su_birthday.setText( dateViewFormatter.format(choosen.getTime())
+                        su_birthday.setText( formatter.format(choosen.getTime())
                         );
                         dialog.dismiss();
                     }
@@ -452,8 +453,18 @@ public class RegistgrationActivity extends Activity implements View.OnClickListe
     protected void onResume() {
         vanumeName=AppConstant.vanueName;
         vanumeID=AppConstant.vanueID;
-        su_courses.setText(vanumeName);
+        if(getNumberOfVanue(vanumeName).equalsIgnoreCase("0")){
+            su_courses.setText("Select Courses");
+        }else {
+            su_courses.setText(getNumberOfVanue(vanumeName)+" Places Selected");
+        }
+
         super.onResume();
+    }
+
+    private String getNumberOfVanue(String places){
+        int numberOfPlaces = CommonUtils.getNumberOfCoupon(places);
+       return ""+(numberOfPlaces-1);
     }
 }
 

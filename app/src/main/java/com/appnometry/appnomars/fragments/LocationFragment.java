@@ -11,14 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.appnometry.appnomars.R;
-import com.appnometry.appnomars.adapter.CouponAdapter;
-import com.appnometry.appnomars.dialog.AlertDialogHelper;
-import com.appnometry.appnomars.parser.GlobalItemParser;
 import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.util.ApiImplementation;
-import com.appnometry.appnomars.util.AppConstant;
 import com.appnometry.appnomars.util.HttpRequest;
+import com.appnometry.appnomars.util.SharedPreferencesHelper;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,7 +30,7 @@ import java.io.IOException;
 
 
 /**
- * Created by Daniel on 09.11.2014.
+ * Created by Ali.
  */
 public class LocationFragment extends Fragment {
 
@@ -34,6 +38,14 @@ public class LocationFragment extends Fragment {
     private String results;
     private Context context;
     private ApiImplementation apiImplementation = new ApiImplementation();
+    SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper();
+
+    static final LatLng HAMBURG = new LatLng(53.558, 9.927);
+    static final LatLng KIEL = new LatLng(53.551, 9.993);
+    private GoogleMap map;
+    private double latiTude[]=new double[50];
+    private double longiTude[]=new double[50];
+
 
 
     @Override
@@ -46,9 +58,12 @@ public class LocationFragment extends Fragment {
     }
 
     private void initUI(View view) {
-        String apiURL = apiImplementation.GenerateFullUrlforVenueList();
+        String apiURL = apiImplementation.GenerateFullUrlforStream(sharedPreferencesHelper.getSessionId(context)
+                , sharedPreferencesHelper.getRegId(context));
         Log.i("apiURL Url Are", apiURL);
         new GetVanueLisitAsync().execute(apiURL);
+
+
     }
 
     private class GetVanueLisitAsync extends AsyncTask<String, Void, String> {
@@ -79,15 +94,47 @@ public class LocationFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            AppConstant.isSearched = false;
             try {
                 final JSONObject mainJsonObject = new JSONObject(results);
-
+                final JSONArray top_list = new JSONArray(mainJsonObject.getString("data"));
+                Log.i("top_list",""+top_list);
+                for (int i = 0; i < top_list.length(); i++) {
+                    JSONObject top_list_jsonObject = top_list.getJSONObject(i);
+                    latiTude[i]=Double.parseDouble(top_list_jsonObject.getString("latitude"));
+                    longiTude[i]=Double.parseDouble(top_list_jsonObject.getString("longitude"));
+                    Log.i("Latitude",""+longiTude[i]);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            initMAP(latiTude,longiTude);
         }
+
+    }
+
+    private void initMAP(double []latitude,double [] longiTude){
+        map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map))
+                .getMap();
+
+        for(int i=0;i<latitude.length;i++){
+            Log.i("latiTude[i]",""+i+"Are "+latitude[i]);
+            Marker hamburg = map.addMarker(new MarkerOptions().position(new LatLng(latitude[i], longiTude[i]))
+                    .title("Hamburg"));
+
+//            Marker kiel = map.addMarker(new MarkerOptions()
+//                    .position(KIEL)
+//                    .title("Kiel")
+//                    .snippet("Kiel is cool")
+//                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
+            // Move the camera instantly to hamburg with a zoom of 15.
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latiTude[i], longiTude[i]), 15));
+
+            // Zoom in, animating the camera.
+            map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+        }
+
+
 
     }
 

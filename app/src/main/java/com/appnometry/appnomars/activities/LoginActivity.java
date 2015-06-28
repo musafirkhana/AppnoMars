@@ -35,7 +35,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private JsonUtility jsonUtility = new JsonUtility();
     private ProgressDialog progressDialog;
 
-    /*************************Declare UI Inter Faces***************************/
+    /*************************Declare UI InterFaces***************************/
     private Button login_btn;
     private Button btn_register;
     private TextView forgetpass_textview;
