@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/shop_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:text="My Cart"
+        android:layout_above="@+id/li_shop_botttom"
+        >
+
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/li_shop_botttom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/shop_bottom" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
