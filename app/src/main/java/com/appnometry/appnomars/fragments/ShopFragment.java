@@ -2,6 +2,7 @@ package com.appnometry.appnomars.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,10 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.appnometry.appnomars.R;
+import com.appnometry.appnomars.activities.ShopDetailActivity;
 import com.appnometry.appnomars.adapter.ShopListAdapter;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.parser.GlobalItemParser;
@@ -49,7 +52,9 @@ public class ShopFragment extends Fragment {
     private LinearLayout linear_mycart;
     private LinearLayout linear_history;
 
-    /*******************Declare Shop UI***************************/
+    /**
+     * ****************Declare Shop UI**************************
+     */
     private GridView shop_list;
     private ShopListAdapter shopListAdapter;
 
@@ -64,13 +69,23 @@ public class ShopFragment extends Fragment {
         initUI(rootView);
         return rootView;
     }
-private void initUI(View view){
-    shop_list=(GridView)view.findViewById(R.id.shop_list);
-    String apiURL = apiImplementation.GenerateFullUrlforShopView(sharedPreferencesHelper.getSessionId(context)
-            , sharedPreferencesHelper.getRegId(context));
-    Log.i("Url Are", apiURL);
-    new ShopAsync().execute(apiURL);
-}
+
+    private void initUI(View view) {
+        shop_list = (GridView) view.findViewById(R.id.shop_list);
+        shop_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(),ShopDetailActivity.class);
+                intent.putExtra("position",position);
+                startActivity(intent);
+            }
+        });
+        String apiURL = apiImplementation.GenerateFullUrlforShopView(sharedPreferencesHelper.getSessionId(context)
+                , sharedPreferencesHelper.getRegId(context));
+        Log.i("Url Are", apiURL);
+        new ShopAsync().execute(apiURL);
+    }
+
     private void initiateFragmentView() {
         if (fragment != null) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -108,6 +123,7 @@ private void initUI(View view){
             }
         }
     };
+
     private class ShopAsync extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {

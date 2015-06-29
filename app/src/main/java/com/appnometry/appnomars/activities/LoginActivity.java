@@ -17,10 +17,10 @@ import com.appnometry.appnomars.R;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.util.ApiImplementation;
+import com.appnometry.appnomars.util.AppJsonUtility;
 import com.appnometry.appnomars.util.HTTPHandler;
 import com.appnometry.appnomars.util.HTTPPostHelper;
 import com.appnometry.appnomars.util.HttpRequest;
-import com.appnometry.appnomars.util.JsonUtility;
 import com.appnometry.appnomars.util.PersistUser;
 import com.appnometry.appnomars.util.SharedPreferencesHelper;
 
@@ -32,7 +32,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     public String results;
     private ApiImplementation apiImplementation = new ApiImplementation();
     private SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper();
-    private JsonUtility jsonUtility = new JsonUtility();
+    private AppJsonUtility jsonUtility = new AppJsonUtility();
     private ProgressDialog progressDialog;
 
     /*************************Declare UI InterFaces***************************/

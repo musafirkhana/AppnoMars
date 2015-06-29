@@ -21,45 +21,27 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:paddingLeft="5dp">
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                >
 
-                <ImageView
-                    android:id="@+id/title_imageview"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true" />
 
                 <TextView
-                    android:id="@+id/nf_coupontitle"
+                    android:id="@+id/shop_coupontitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/title_imageview"
-                    android:layout_toLeftOf="@+id/top_separator"
-                    android:text="Title of coupon item"
-                    android:singleLine="true"
-                    android:lines="1"
-                    android:textColor="@color/text_color"
                     android:ellipsize="end"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:text="Title of coupon item"
+                    android:textColor="@color/text_color"
                     android:textSize="10dp" />
 
-                <View
-                    android:id="@+id/top_separator"
-                    android:layout_width="1dp"
-                    android:layout_height="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_toLeftOf="@+id/nf_price"
-                    android:background="@color/material_blue_grey_950"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/nf_price"
+                    android:id="@+id/shop_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -67,7 +49,7 @@
                     android:background="@color/edtitext_back"
                     android:gravity="center_vertical"
                     android:text="$600"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/black"
                     android:textSize="8dp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -88,7 +70,7 @@
 
 
                 <ImageView
-                    android:id="@+id/img_mainimage"
+                    android:id="@+id/shop_mainimage"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/nf_image_height"
                     android:background="@drawable/pro_bg"
@@ -98,76 +80,58 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/edtitext_back"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+
 
                 <TextView
-                    android:id="@+id/short_desc"
-                    android:layout_width="fill_parent"
+                    android:id="@+id/shop_type"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:maxLines="2"
-                    android:ellipsize="end"
-                    android:text="Beige Messenger beg Beige Messenger beg Beige Messenger begBeige Messenger begBeige Messenger begBeige Messenger begBeige Messenger begBeige Messenger beg"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_weight="2"
                     android:background="@color/edtitext_back"
-                    android:orientation="horizontal">
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:text="Membership"
+                    android:textColor="@color/text_color"
+                    android:textSize="8sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/shop_addtocart"
+                    android:text="+" />
 
-                    <TextView
-                        android:id="@+id/nf_placensme"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="2"
-                        android:background="@color/edtitext_back"
-                        android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:lines="1"
-                        android:text="Place Name"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color"
-                        android:textSize="8sp" />
-
-                    <View
-                        android:id="@+id/nf_placename_separator"
-                        android:layout_width="1dp"
-                        android:layout_height="10dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@color/material_blue_grey_950" />
-
-
-                    <TextView
-                        android:id="@+id/nf_date"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="2"
-                        android:background="@color/edtitext_back"
-                        android:ellipsize="marquee"
-                        android:gravity="center_vertical"
-                        android:maxLines="1"
-                        android:text="Date"
-                        android:textColor="@color/text_color"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/shop_addtocart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="2"
+                    android:background="@color/edtitext_back"
+                    android:ellipsize="marquee"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="Add To Cart"
+                    android:textColor="@color/text_color"
+                    android:textSize="8sp" />
+            </RelativeLayout>
 
 
         </LinearLayout>

@@ -9,18 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.appnometry.appnomars.R;
 import com.appnometry.appnomars.holder.AllGlobalItemList;
 import com.appnometry.appnomars.model.GlobalItemListModel;
-import com.appnometry.appnomars.util.CommonUtils;
 import com.appnometry.appnomars.util.JsonUtility;
-import com.appnometry.appnomars.util.Tools;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 
 public class ShopListAdapter extends ArrayAdapter<GlobalItemListModel> {
@@ -35,7 +31,7 @@ public class ShopListAdapter extends ArrayAdapter<GlobalItemListModel> {
     public ShopListAdapter(Context context) {
         super(context, R.layout.list_row_shop, AllGlobalItemList.getAllNewsFeedList());
         this.context = context;
-        imageLoader = ImageLoader.getInstance();
+        /*imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(context));
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.logo)
@@ -45,21 +41,19 @@ public class ShopListAdapter extends ArrayAdapter<GlobalItemListModel> {
                 .cacheOnDisk(true)
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
+                .build();*/
 
     }
 
     static class ViewHolder {
 
-        ImageView img_mainimage;
-        ImageView title_imageview;
+        ImageView shop_mainimage;
         ProgressBar progressBarCircular;
-        TextView nf_coupontitle;
-        TextView nf_placensme;
-        TextView nf_date;
-        TextView nf_price;
-        TextView short_desc;
-        View top_separator;
+        TextView shop_coupontitle;
+        TextView shop_price;
+        TextView shop_type;
+        TextView shop_addtocart;
+
 
     }
 
@@ -95,15 +89,12 @@ public class ShopListAdapter extends ArrayAdapter<GlobalItemListModel> {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.list_row_shop, null);
             holder = new ViewHolder();
-            holder.img_mainimage = (ImageView) v.findViewById(R.id.img_mainimage);
-            holder.title_imageview=(ImageView)v.findViewById(R.id.title_imageview);
+            holder.shop_mainimage = (ImageView) v.findViewById(R.id.shop_mainimage);
             holder.progressBarCircular = (ProgressBar) v.findViewById(R.id.progress);
-            holder.short_desc = (TextView) v.findViewById(R.id.short_desc);
-            holder.nf_coupontitle = (TextView) v.findViewById(R.id.nf_coupontitle);
-            holder.nf_placensme = (TextView) v.findViewById(R.id.nf_placensme);
-            holder.nf_date = (TextView) v.findViewById(R.id.nf_date);
-            holder.nf_price = (TextView) v.findViewById(R.id.nf_price);
-            holder.top_separator = (View) v.findViewById(R.id.top_separator);
+            holder.shop_coupontitle = (TextView) v.findViewById(R.id.shop_coupontitle);
+            holder.shop_type = (TextView) v.findViewById(R.id.shop_type);
+            holder.shop_addtocart = (TextView) v.findViewById(R.id.shop_addtocart);
+            holder.shop_price = (TextView) v.findViewById(R.id.shop_price);
 
 
             v.setTag(holder);
@@ -114,20 +105,12 @@ public class ShopListAdapter extends ArrayAdapter<GlobalItemListModel> {
         if (position < AllGlobalItemList.getAllNewsFeedList().size()) {
             final GlobalItemListModel query = AllGlobalItemList.getAllNewsFeedList().elementAt(position);
 
-            holder.title_imageview.setVisibility(View.GONE);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)holder.nf_coupontitle.getLayoutParams();
-            params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 
-            holder.short_desc.setText(query.getDescription());
-            holder.nf_date.setText(Tools.DateFormator(query.getValid_to().toString(), "yyyy-MM-dd HH:mm:ss", "dd.MM.yyyy"));
-            holder.nf_price.setText("$ "+query.getItem_price());
-            holder.nf_coupontitle.setText(query.getTitle());
-            int numberOfPlaces = CommonUtils.getNumberOfCoupon(query.getVenue_name());
-            if (numberOfPlaces == 1) {
-                holder.nf_placensme.setText(query.getVenue_name());
-            } else {
-                holder.nf_placensme.setText("Valid In " + numberOfPlaces + " Places");
-            }
+
+            holder.shop_coupontitle.setText(query.getTitle());
+            holder.shop_type.setText(query.getItem_type());
+            holder.shop_price.setText("$ "+query.getItem_price());
+
 
 
 

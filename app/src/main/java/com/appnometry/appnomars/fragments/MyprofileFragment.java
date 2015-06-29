@@ -20,15 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appnometry.appnomars.R;
-import com.appnometry.appnomars.activities.LoginActivity;
-import com.appnometry.appnomars.activities.RegistgrationActivity;
 import com.appnometry.appnomars.activities.VunueListActivity;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.util.ApiImplementation;
 import com.appnometry.appnomars.util.AppConstant;
+import com.appnometry.appnomars.util.AppJsonUtility;
 import com.appnometry.appnomars.util.HttpRequest;
-import com.appnometry.appnomars.util.JsonUtility;
 import com.appnometry.appnomars.util.SharedPreferencesHelper;
 
 import org.json.JSONObject;
@@ -46,7 +44,7 @@ import java.util.Locale;
  */
 public class MyprofileFragment extends Fragment {
 
-    private JsonUtility jsonUtility = new JsonUtility();
+    private AppJsonUtility jsonUtility = new AppJsonUtility();
     private ProgressDialog progressDialog;
     public String results;
     private Context context;

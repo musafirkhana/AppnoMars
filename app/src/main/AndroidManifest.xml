@@ -76,6 +76,11 @@
             android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.ShopDetailActivity"
+            android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
         <!-- Register Broadcast receiver -->
 
         <receiver
