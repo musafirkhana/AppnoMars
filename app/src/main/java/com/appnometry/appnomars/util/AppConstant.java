@@ -2,6 +2,8 @@ package com.appnometry.appnomars.util;
 
 import android.app.Application;
 
+import org.json.simple.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -10,8 +12,10 @@ import java.util.ArrayList;
 public class AppConstant extends Application {
     public static String vanueName = "";
     public static String vanueID = "";
+    public static JSONObject ADDTOCART;
     public static ArrayList<String> elements = new ArrayList<>();
     public static String[] myprofileErray = new String[100];
+    public static int SUBTOTAL=0;
 
    /********************Google Push Noticifation Constant******************************************/
     public static final String GOOGLE_PROJ_ID = "563517251658";

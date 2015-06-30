@@ -2,6 +2,7 @@ package com.appnometry.appnomars.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.appnometry.appnomars.R;
+import com.appnometry.appnomars.activities.DealDetailActivity;
 import com.appnometry.appnomars.adapter.DealsAdapter;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.parser.GlobalItemParser;
@@ -39,8 +40,11 @@ public class DealsFragment extends Fragment {
     SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper();
     private DealsAdapter adapter;
 
-    /**************************Declare View Component*********************/
+    /**
+     * ***********************Declare View Component********************
+     */
     private GridView deal_gridview;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_deals, container, false);
@@ -51,12 +55,16 @@ public class DealsFragment extends Fragment {
         initUI(rootView);
         return rootView;
     }
+
     public void initUI(View view) {
         deal_gridview = (GridView) view.findViewById(R.id.deal_gridview);
         deal_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(context, "List Item Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DealDetailActivity.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
+
             }
         });
 
@@ -67,6 +75,7 @@ public class DealsFragment extends Fragment {
 
 
     }
+
     private class DealsAsync extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -82,11 +91,10 @@ public class DealsFragment extends Fragment {
                         .getInputStreamForGetRequest(params[0]));
                 Log.i("Result Are ", results);
 
-                if (GlobalItemParser.connect(context, results));
-            }
-            catch (JSONException e) {
+                if (GlobalItemParser.connect(context, results)) ;
+            } catch (JSONException e) {
                 e.printStackTrace();
-            }  catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -100,12 +108,12 @@ public class DealsFragment extends Fragment {
             super.onPostExecute(result);
             try {
                 final JSONObject mainJsonObject = new JSONObject(results);
-                if(mainJsonObject.getString("status").equalsIgnoreCase("true")){
+                if (mainJsonObject.getString("status").equalsIgnoreCase("true")) {
                     adapter = new DealsAdapter(getActivity());
                     deal_gridview.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     progressDialog.dismiss();
-                }else {
+                } else {
                     progressDialog.dismiss();
                     AlertDialogHelper.showAlert(context, "Server Error");
                 }
