@@ -9,11 +9,9 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-
     <permission
         android:name="com.appnometry.appnomars.C2D_MESSAGE"
         android:protectionLevel="signature" />
-
     <uses-permission android:name="com.prgguru.example.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -21,12 +19,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.appnometry.appnomars.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <!-- GCM Permissions - End here -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <!--Google MAP API key-->
-
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -86,8 +81,17 @@
             android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.EventDetailActivity"
+            android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activities.NewsDetailActivity"
+            android:configChanges="locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
         <!-- Register Broadcast receiver -->
-
         <receiver
             android:name=".GCM.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
@@ -98,19 +102,13 @@
                 <category android:name="com.prgguru.example" />
             </intent-filter>
         </receiver>
-
         <!-- Register Service -->
-
         <service android:name=".GCM.GCMNotificationIntentService" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCvNVZ9D9ou2ZO5g6sa5cC3sItuhUjUcY4" />
     </application>
-
 </manifest>

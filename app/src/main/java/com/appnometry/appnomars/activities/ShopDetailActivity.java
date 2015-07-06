@@ -25,7 +25,7 @@ public class ShopDetailActivity extends Activity implements View.OnClickListener
     private Context context;
     private JsonUtility jsonUtility = new JsonUtility();
     /**
-     * ***************************Decleare View********************************
+     * ***************************Declare View********************************
      */
     private ImageView sd_imageview;
     private ImageView sd_back;
@@ -75,24 +75,17 @@ public class ShopDetailActivity extends Activity implements View.OnClickListener
                 finish();
                 break;
             case R.id.sd_addto_cart:
-
                 final GlobalItemListModel queryGlobalItemListModel = AllGlobalItemList.getAllNewsFeedList().elementAt(position);
-
                 JSONObject jsonObj = new JSONObject();
-
-                    jsonObj.put("ID", "" + queryGlobalItemListModel.getId());
-                    jsonObj.put("TITLE", queryGlobalItemListModel.getTitle());
-                    jsonObj.put("PRICE", queryGlobalItemListModel.getItem_price());
-                    jsonObj.put("QUANTITY", "1");
-                    jsonObj.put("DETAIL", queryGlobalItemListModel.getDescription());
-                    jsonObj.put("UNIT_PRICE", queryGlobalItemListModel.getItem_price());
-                    AppConstant.ADDTOCART=jsonObj;
-                    jsonUtility.createJsonFile(jsonObj,context);
-                    finish();
-
-
-
-
+                jsonObj.put("ID", "" + queryGlobalItemListModel.getId());
+                jsonObj.put("TITLE", queryGlobalItemListModel.getTitle());
+                jsonObj.put("PRICE", queryGlobalItemListModel.getItem_price());
+                jsonObj.put("QUANTITY", "1");
+                jsonObj.put("DETAIL", queryGlobalItemListModel.getDescription());
+                jsonObj.put("UNIT_PRICE", queryGlobalItemListModel.getItem_price());
+                AppConstant.ADDTOCART = jsonObj;
+                jsonUtility.createJsonFile(jsonObj, context);
+                finish();
                 break;
         }
 

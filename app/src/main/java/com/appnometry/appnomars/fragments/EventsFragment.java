@@ -2,6 +2,7 @@ package com.appnometry.appnomars.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.appnometry.appnomars.R;
+import com.appnometry.appnomars.activities.EventDetailActivity;
 import com.appnometry.appnomars.adapter.EventsAdapter;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.parser.GlobalItemParser;
@@ -55,7 +56,9 @@ public class EventsFragment extends Fragment {
         event_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(context, "List Item Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), EventDetailActivity.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
             }
         });
 

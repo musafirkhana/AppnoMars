@@ -8,10 +8,21 @@
         android:id="@+id/coupon_gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/li_coupon_bottom"
         android:numColumns="2"
         android:horizontalSpacing="5dp"
         android:verticalSpacing="5dp"
         android:padding="10dp"
          />
 
+    <LinearLayout
+        android:id="@+id/li_coupon_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/coupon_bottom" />
+
+
+    </LinearLayout>
 </RelativeLayout>

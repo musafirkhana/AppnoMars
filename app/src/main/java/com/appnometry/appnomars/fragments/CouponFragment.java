@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.appnometry.appnomars.R;
 import com.appnometry.appnomars.activities.CouponDetailActivity;
@@ -40,11 +42,18 @@ public class CouponFragment extends Fragment {
     private String results;
     SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper();
     private CouponAdapter adapter;
+    Fragment fragment = null;
 
     /**
      * ***********************Declare View Component********************
      */
     private GridView coupon_gridview;
+
+    /**
+     * ***************Initiate Bottom Tab************************
+     */
+    private LinearLayout linear_benefitcoupon;
+    private LinearLayout linear_purchasedcoupon;
 
 
     @Override
@@ -53,6 +62,7 @@ public class CouponFragment extends Fragment {
         progressDialog = new CustomProgressDialog(getActivity(), "Loading...", true);
 
         context = getActivity();
+        initBottomTAb(rootView);
         initUI(rootView);
 
         return rootView;
@@ -82,7 +92,39 @@ public class CouponFragment extends Fragment {
 
 
     }
+    /********************For Fragment Initialization************************/
+    private void initiateFragmentView() {
+        if (fragment != null) {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
+        }
+    }
 
+    private void initBottomTAb(View view) {
+        linear_benefitcoupon = (LinearLayout) view.findViewById(R.id.linear_benefitcoupon);
+        linear_purchasedcoupon = (LinearLayout) view.findViewById(R.id.linear_purchasedcoupon);
+        linear_benefitcoupon.setBackgroundColor(getResources().getColor(R.color.bottom_select));
+        linear_benefitcoupon.setOnClickListener(tabCoupononclick);
+        linear_purchasedcoupon.setOnClickListener(tabCoupononclick);
+    }
+    public View.OnClickListener tabCoupononclick = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.linear_benefitcoupon:
+                    // fragment = new ShopFragment();
+                    linear_benefitcoupon.setBackgroundColor(getResources().getColor(R.color.bottom_select));
+                    break;
+                case R.id.linear_purchasedcoupon:
+                    linear_purchasedcoupon.setBackgroundColor(getResources().getColor(R.color.bottom_select));
+                    fragment = new PurchasedCouponFragment();
+                    initiateFragmentView();
+                    break;
+
+            }
+        }
+    };
     private class CouponAsync extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
