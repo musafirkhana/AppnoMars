@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ApiImplementation {
 
-    public static String baseURL = "http://192.168.1.12/appnometry_webapp/www/RESTApi/public/rest";
-
+    //public static String baseURL = "http://192.168.1.12/appnometry_webapp/www/RESTApi/public/rest";
+    public static String baseURL = "http://digitalsolutionhouse.com/RESTApi/public/rest";
     private final String route = "route=api/login";
     private final String menRoute = "route=api/category";
     private final String registerRoute = "users/registration";

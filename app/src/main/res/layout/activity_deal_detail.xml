@@ -12,7 +12,8 @@
 
         android:background="@color/app_background">
 
-        <ImageView android:id="@+id/dd_back"
+        <ImageView
+            android:id="@+id/dd_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -34,19 +35,20 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/dd_top_relative">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-
             android:orientation="vertical"
             android:padding="10dp">
 
-            <ImageView android:id="@+id/dd_imageview"
+            <ImageView
+                android:id="@+id/dd_imageview"
                 android:layout_width="fill_parent"
                 android:layout_height="200dp"
+                android:scaleType="fitXY"
                 android:background="@drawable/account_image" />
 
             <TextView
@@ -56,9 +58,9 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/edtitext_back"
                 android:padding="10dp"
-                android:textStyle="bold"
                 android:text="Title Of Shop Item \n Title Of Shop Item"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -77,7 +79,8 @@
                     android:paddingLeft="5dp"
                     android:paddingTop="5dp">
 
-                    <TextView android:id="@+id/dd_time"
+                    <TextView
+                        android:id="@+id/dd_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -93,7 +96,8 @@
                 </RelativeLayout>
 
 
-                <TextView android:id="@+id/dd_prices"
+                <TextView
+                    android:id="@+id/dd_prices"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2.5dp"
@@ -105,22 +109,25 @@
                     android:text=""
                     android:textColor="#0EADEA" />
             </LinearLayout>
-            <RelativeLayout
+
+            <RelativeLayout android:id="@+id/dd_moreplace_relative"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 android:layout_marginRight="2.5dp"
                 android:background="@color/edtitext_back"
                 android:paddingBottom="5dp"
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp">
 
-                <TextView android:id="@+id/dd_places"
+                <TextView
+                    android:id="@+id/dd_places"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="2.5dp"
-                    android:layout_toLeftOf="@+id/arrow_image"
+                    android:layout_toLeftOf="@+id/dd_arrow_image"
                     android:background="@color/edtitext_back"
                     android:ellipsize="end"
                     android:lines="1"
@@ -128,7 +135,7 @@
                     android:text="Places 02:(Dhaka ,Bangladesh)" />
 
                 <ImageView
-                    android:id="@+id/arrow_image"
+                    android:id="@+id/dd_arrow_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -136,15 +143,25 @@
                     android:layout_marginRight="2.5dp"
                     android:background="@drawable/arrow_child" />
             </RelativeLayout>
-            <TextView android:id="@+id/dd_detail"
+
+            <ListView
+                android:id="@+id/dd_moreplace"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <TextView
+                android:id="@+id/dd_detail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@color/edtitext_back"
                 android:paddingBottom="5dp"
-                android:paddingTop="5dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
+                android:paddingTop="5dp"
                 android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting" />
 
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.appnometry.appnomars.R;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
+import com.appnometry.appnomars.fragments.MyCartFragment;
 import com.appnometry.appnomars.holder.AllShoppingCartList;
 import com.appnometry.appnomars.model.ShoppingCartListModel;
 import com.appnometry.appnomars.util.AppConstant;
@@ -122,7 +123,8 @@ public class MyCartAdapter extends ArrayAdapter<ShoppingCartListModel> {
             public void onClick(View v) {
                 jsonUtility.removeAddtocartList(position);
                 AllShoppingCartList.getAllShoppingList().remove(position);
-                notifyDataSetChanged();
+                //notifyDataSetChanged();
+                MyCartFragment.updateSum(AppConstant.SUBTOTAL-Integer.valueOf(holder.cart_price.getText().toString()));
 
             }
         });
@@ -135,12 +137,12 @@ public class MyCartAdapter extends ArrayAdapter<ShoppingCartListModel> {
 
                 holder.cart_itemnumber.setText("" + (itemCount + 1));
                 holder.cart_price.setText("" + (itemPrice + itemPriceUnit));
-                AppConstant.SUBTOTAL = Integer.valueOf(holder.cart_price.getText().toString());
+                AppConstant.SUBTOTAL = AppConstant.SUBTOTAL+itemPriceUnit;
                 addItem(position, holder.cart_itemnumber.getText().toString(), holder.cart_price.getText().toString());
 
                 jsonUtility.removeAddtocartList(position);
                 AppConstant.elements.add(addItem(position, holder.cart_itemnumber.getText().toString(), holder.cart_price.getText().toString()));
-
+                MyCartFragment.updateSum(AppConstant.SUBTOTAL);
             }
         });
         holder.cart_leftarrow.setOnClickListener(new View.OnClickListener() {
@@ -154,13 +156,15 @@ public class MyCartAdapter extends ArrayAdapter<ShoppingCartListModel> {
                 holder.cart_price.setText("" + (itemPrice - itemPriceUnit));
                 if (itemCount < 0) {
                     AlertDialogHelper.showAlert(context, "Please Select least one");
+                }else {
+                    holder.cart_itemnumber.setText("" + (itemCount - 1));
+                    addItem(position, holder.cart_itemnumber.getText().toString(), holder.cart_price.getText().toString());
+
+                    jsonUtility.removeAddtocartList(position);
+                    AppConstant.elements.add(addItem(position, holder.cart_itemnumber.getText().toString(), holder.cart_price.getText().toString()));
+                    AppConstant.SUBTOTAL = AppConstant.SUBTOTAL-itemPriceUnit;
                 }
 
-                holder.cart_itemnumber.setText("" + (itemCount - 1));
-                addItem(position, holder.cart_itemnumber.getText().toString(), holder.cart_price.getText().toString());
-
-                jsonUtility.removeAddtocartList(position);
-                AppConstant.elements.add(addItem(position, holder.cart_itemnumber.getText().toString(), holder.cart_price.getText().toString()));
 
             }
         });

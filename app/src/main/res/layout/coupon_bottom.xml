@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:background="@drawable/bottom_nav_bg"
+    android:orientation="horizontal">
+
+
+
+    <LinearLayout
+        android:id="@+id/linear_benefitcoupon"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Benefit Coupon"
+            android:textColor="@color/google_white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:background="@color/google_white"
+        android:layout_height="fill_parent" />
+
+    <LinearLayout
+        android:id="@+id/linear_purchasedcoupon"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Purchased Coupon"
+            android:textColor="@color/google_white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

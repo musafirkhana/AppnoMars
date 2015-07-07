@@ -111,6 +111,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     }
 
+    /**
+     * ************************Initialize UI Component***********************************
+     */
     private void initUI() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

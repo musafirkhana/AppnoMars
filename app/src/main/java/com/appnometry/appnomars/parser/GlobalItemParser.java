@@ -1,7 +1,6 @@
 package com.appnometry.appnomars.parser;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.appnometry.appnomars.holder.AllGlobalItemList;
 import com.appnometry.appnomars.model.GlobalItemListModel;
@@ -47,8 +46,8 @@ public class GlobalItemParser {
             globalItemListModel.setLongitude(top_list_jsonObject.getString("longitude"));
             globalItemListModel.setItem_price(top_list_jsonObject.getString("item_price"));
             globalItemListModel.setItem_deal_price(top_list_jsonObject.getString("item_deal_price"));
-            globalItemListModel.setTickets(top_list_jsonObject.getString("tickets"));
-            Log.i("tickets",top_list_jsonObject.getString("tickets"));
+            //globalItemListModel.setTickets(top_list_jsonObject.getString("tickets"));
+            //Log.i("tickets",top_list_jsonObject.getString("tickets"));
 
             allGlobalItemList.setNewsFeedList(globalItemListModel);
             globalItemListModel = null;

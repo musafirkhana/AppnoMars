@@ -19,6 +19,7 @@ import com.appnometry.appnomars.R;
 import com.appnometry.appnomars.adapter.MyCartAdapter;
 import com.appnometry.appnomars.database.AppnomarsDBHandler;
 import com.appnometry.appnomars.database.KudoroBDModel;
+import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.holder.AllShoppingCartList;
 import com.appnometry.appnomars.model.ShoppingCartListModel;
 import com.appnometry.appnomars.parser.ShoppingCartParser;
@@ -50,9 +51,10 @@ public class MyCartFragment extends Fragment {
     private LinearLayout linear_shop;
     private LinearLayout linear_mycart;
     private LinearLayout linear_history;
+    private LinearLayout bottom_linear;
 
     private ListView mycart_list;
-    private TextView subtotal_txt;
+    public static TextView subtotal_txt;
     private TextView total_txt;
     private Button btn_placeorder;
 
@@ -70,6 +72,7 @@ public class MyCartFragment extends Fragment {
         mycart_list = (ListView) view.findViewById(R.id.mycart_list);
         subtotal_txt = (TextView) view.findViewById(R.id.subtotal_txt);
         total_txt = (TextView) view.findViewById(R.id.total_txt);
+        bottom_linear=(LinearLayout)view.findViewById(R.id.bottom_linear);
 
         myCartAdapter = new MyCartAdapter(getActivity());
 
@@ -83,7 +86,9 @@ public class MyCartFragment extends Fragment {
         new getAllShoppingList().execute(AppConstant.elements.toString());
 
     }
-
+    public static void updateSum(int sum){
+        subtotal_txt.setText(Integer.toString(sum));
+    }
     private void initiateFragmentView() {
         if (fragment != null) {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -151,21 +156,27 @@ public class MyCartFragment extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            mycart_list.setAdapter(myCartAdapter);
-            myCartAdapter.notifyDataSetChanged();
+            if(AllShoppingCartList.getAllShoppingList().size()==0){
+                busyDialog.dismiss();
+                subtotal_txt.setText("" + "00");
+                AlertDialogHelper.showAlert(context, "Please Select least one");
+                bottom_linear.setVisibility(View.GONE);
+            }else {
+                mycart_list.setAdapter(myCartAdapter);
+                myCartAdapter.notifyDataSetChanged();
+                busyDialog.dismiss();
+                int position = 0;
+                do {
+                    final ShoppingCartListModel query = AllShoppingCartList.getAllShoppingList().elementAt(
+                            position);
+                    Total=Total+Integer.parseInt(query.getItemPrice());
+                    position++;
+                }while (position<AllShoppingCartList.getAllShoppingList().size());
+                AppConstant.SUBTOTAL = Total;
+                subtotal_txt.setText("" + Total);
 
 
-            busyDialog.dismiss();
-            int position = 0;
-            do {
-                final ShoppingCartListModel query = AllShoppingCartList.getAllShoppingList().elementAt(
-                        position);
-                Total=Total+Integer.parseInt(query.getItemPrice());
-                position++;
-            }while (position<AllShoppingCartList.getAllShoppingList().size());
-            AppConstant.SUBTOTAL = Total;
-            subtotal_txt.setText("" + Total);
-
+            }
 
         }
 

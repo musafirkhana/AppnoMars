@@ -20,6 +20,9 @@ import com.appnometry.appnomars.util.Tools;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 
 public class NewsFeedAdapter extends ArrayAdapter<GlobalItemListModel> {
@@ -141,7 +144,7 @@ public class NewsFeedAdapter extends ArrayAdapter<GlobalItemListModel> {
             }
 
 
-          /* imageLoader.displayImage(query.getImage_url().replaceAll("http://localhost","http://192.168.1.7/"), holder.img_mainimage, options, new SimpleImageLoadingListener() {
+          imageLoader.displayImage(query.getImage(), holder.img_mainimage, options, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String imageUri, View view) {
                     holder.progressBarCircular.setVisibility(View.VISIBLE);
@@ -161,7 +164,7 @@ public class NewsFeedAdapter extends ArrayAdapter<GlobalItemListModel> {
                 public void onProgressUpdate(String imageUri, View view, int current, int total) {
                     holder.progressBarCircular.setVisibility(View.VISIBLE);
                 }
-            });*/
+            });
 
 
         }

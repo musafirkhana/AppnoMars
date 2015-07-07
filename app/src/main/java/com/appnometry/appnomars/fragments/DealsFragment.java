@@ -30,7 +30,7 @@ import java.io.IOException;
 
 
 /**
- * Created by Daniel on 09.11.2014.
+ * Created by Ali on 09.06.2015.
  */
 public class DealsFragment extends Fragment {
     private ProgressDialog progressDialog;
