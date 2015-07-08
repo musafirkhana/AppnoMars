@@ -139,7 +139,7 @@ private void initImageLoader(){
         placesArray = query.getVenue_name().split(",");
         placesID=query.getItem_venues().split(",");
         if(placesArray.length==1){
-            dd_places.setText(query.getItem_venues());
+            dd_places.setText(query.getVenue_name());
         }else {
             dd_places.setText("Valid In " + placesArray.length+" Places");
         }
@@ -157,7 +157,7 @@ private void initImageLoader(){
             case R.id.dd_moreplace_relative:
                 if(placesArray.length==1) {
                     dd_moreplace.setVisibility(View.GONE);
-                    dd_arrow_image.setVisibility(View.GONE);
+                    dd_arrow_image.setVisibility(View.INVISIBLE);
                     Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
                 }else {
                     if(dd_moreplace.getVisibility()==View.VISIBLE){

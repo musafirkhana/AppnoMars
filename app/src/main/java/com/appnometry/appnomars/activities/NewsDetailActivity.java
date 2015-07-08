@@ -98,7 +98,7 @@ public class NewsDetailActivity extends Activity implements View.OnClickListener
         placesArray = query.getVenue_name().split(",");
         placesID=query.getItem_venues().split(",");
         if(placesArray.length==1){
-            nd_places.setText(query.getItem_venues());
+            nd_places.setText(query.getVenue_name());
         }else {
             nd_places.setText("Valid In " + placesArray.length+" Places");
         }
@@ -113,7 +113,6 @@ public class NewsDetailActivity extends Activity implements View.OnClickListener
                 finish();
                 break;
             case R.id.nd_places_linear:
-                nd_moreplace.setVisibility(View.VISIBLE);
                 if(placesArray.length==1) {
                     nd_moreplace.setVisibility(View.GONE);
                    // dd_arrow_image.setVisibility(View.GONE);

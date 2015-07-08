@@ -137,7 +137,7 @@ public class CouponDetailActivity extends Activity implements View.OnClickListen
         placesArray = query.getVenue_name().split(",");
         placesID=query.getItem_venues().split(",");
         if(placesArray.length==1){
-            cd_places.setText(query.getItem_venues());
+            cd_places.setText(query.getVenue_name());
         }else {
             cd_places.setText("Valid In " + placesArray.length+" Places");
         }
@@ -155,7 +155,7 @@ public class CouponDetailActivity extends Activity implements View.OnClickListen
             case R.id.cd_moreplace_relative:
                 if(placesArray.length==1) {
                     cd_moreplace.setVisibility(View.GONE);
-                    cd_arrow_image.setVisibility(View.GONE);
+                    cd_arrow_image.setVisibility(View.INVISIBLE);
                     Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
                 }else {
                     if(cd_moreplace.getVisibility()==View.VISIBLE){

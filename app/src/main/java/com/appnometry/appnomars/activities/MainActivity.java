@@ -42,6 +42,7 @@ import com.appnometry.appnomars.fragments.LocationFragment;
 import com.appnometry.appnomars.fragments.MyprofileFragment;
 import com.appnometry.appnomars.fragments.NewsFeedFragment;
 import com.appnometry.appnomars.fragments.ShopFragment;
+import com.appnometry.appnomars.holder.AllShoppingCartList;
 import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.ui.Items;
 import com.appnometry.appnomars.ui.MultiSwipeRefreshLayout;
@@ -163,7 +164,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().setTitle(mDrawerTitle);
-                updateView(5, 99, true);
+                //updateView(5, 99, true);
             }
         };
 
@@ -205,22 +206,22 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         fragment = new LocationFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;
+
                     case 5:
-                        action_search.setVisibility(View.GONE);
-                        Toast.makeText(context, "MY Cart", Toast.LENGTH_SHORT).show();
-                        mDrawerLayout.closeDrawer(Gravity.START);
-                        break;
-                    case 6:
                         action_search.setVisibility(View.GONE);
                         fragment = new ShopFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;
-                    case 7:
+                    case 6:
                         action_search.setVisibility(View.GONE);
                         fragment = new MyprofileFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;
-
+                  /*  case 5:
+                        action_search.setVisibility(View.GONE);
+                        Toast.makeText(context, "MY Cart", Toast.LENGTH_SHORT).show();
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        break;*/
 
                 }
 
@@ -459,7 +460,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 someText.setBackgroundResource(R.drawable.shape_notification);
                 break;*/
             case 5:
-                someText.setText("" + counter);
+                someText.setText("" + AllShoppingCartList.getAllShoppingList().size());
                 if (visible) someText.setVisibility(View.VISIBLE);
                 someText.setBackgroundResource(R.drawable.shape_notification);
                 break;

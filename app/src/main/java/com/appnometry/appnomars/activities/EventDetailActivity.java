@@ -153,7 +153,7 @@ public class EventDetailActivity extends Activity implements View.OnClickListene
             case R.id.ed_moreplace_relative:
                 if(placesArray.length==1) {
                     ed_moreplace.setVisibility(View.GONE);
-                    ed_arrow_image.setVisibility(View.GONE);
+                    ed_arrow_image.setVisibility(View.INVISIBLE);
                     Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
                 }else {
                     if(ed_moreplace.getVisibility()==View.VISIBLE){

@@ -23,7 +23,17 @@ public class DrawerAdapter extends ArrayAdapter<String> {
         this.context = context;
         this.values = values;
     }
+    @Override
+    public int getViewTypeCount() {
 
+        return getCount();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+
+        return position;
+    }
 
 
     @Override

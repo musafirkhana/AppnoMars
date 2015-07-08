@@ -15,9 +15,14 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.appnometry.appnomars.R;
+import com.appnometry.appnomars.activities.CouponDetailActivity;
+import com.appnometry.appnomars.activities.DealDetailActivity;
+import com.appnometry.appnomars.activities.EventDetailActivity;
 import com.appnometry.appnomars.activities.NewsDetailActivity;
 import com.appnometry.appnomars.adapter.NewsFeedAdapter;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
+import com.appnometry.appnomars.holder.AllGlobalItemList;
+import com.appnometry.appnomars.model.GlobalItemListModel;
 import com.appnometry.appnomars.parser.GlobalItemParser;
 import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.util.ApiImplementation;
@@ -64,9 +69,25 @@ public class NewsFeedFragment extends Fragment {
         mens_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-                intent.putExtra("position", position);
-                startActivity(intent);
+                final GlobalItemListModel query = AllGlobalItemList.getAllNewsFeedList().elementAt(position);
+                if (query.getItem_type().equalsIgnoreCase("News Item")) {
+                    Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                    intent.putExtra("position", position);
+                    startActivity(intent);
+                } else if (query.getItem_type().equalsIgnoreCase("Event")) {
+                    Intent intent = new Intent(getActivity(), EventDetailActivity.class);
+                    intent.putExtra("position", position);
+                    startActivity(intent);
+                } else if (query.getItem_type().equalsIgnoreCase("Coupon")) {
+                    Intent intent = new Intent(getActivity(), CouponDetailActivity.class);
+                    intent.putExtra("position", position);
+                    startActivity(intent);
+                } else if (query.getItem_type().equalsIgnoreCase("Benefit")) {
+                    Intent intent = new Intent(getActivity(), DealDetailActivity.class);
+                    intent.putExtra("position", position);
+                    startActivity(intent);
+                }
+
             }
         });
 
