@@ -2,6 +2,7 @@ package com.appnometry.appnomars.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.appnometry.appnomars.R;
+import com.appnometry.appnomars.activities.CouponDetailActivity;
 import com.appnometry.appnomars.adapter.CouponAdapter;
 import com.appnometry.appnomars.dialog.AlertDialogHelper;
 import com.appnometry.appnomars.parser.GlobalItemParser;
@@ -43,7 +47,7 @@ public class PurchasedCouponFragment extends Fragment {
     /**
      * ***********************Declare View Component********************
      */
-    //private GridView coupon_gridview;
+    private GridView purchasecoupon_gridview;
 
     /**
      * ***************Initiate Bottom Tab************************
@@ -65,15 +69,19 @@ public class PurchasedCouponFragment extends Fragment {
     }
 
     public void initUI(View view) {
-        //coupon_gridview = (GridView) view.findViewById(R.id.coupon_gridview);
-        /*coupon_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        purchasecoupon_gridview = (GridView) view.findViewById(R.id.purchasecoupon_gridview);
+        purchasecoupon_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(getActivity(), CouponDetailActivity.class);
                 intent.putExtra("position",position);
                 startActivity(intent);
             }
-        });*/
+        });
+
+        String apiURL = apiImplementation.GenerateFullUrlforPurchase(sharedPreferencesHelper.getSessionId(context)
+                , sharedPreferencesHelper.getRegId(context));
+        new CouponAsync().execute(apiURL);
        /* if (AppConstant.isSearched) {
             String apiURL = apiImplementation.GenarateFullURLforBenefitCuponSearch("Boom", sharedPreferencesHelper.getRegId(context), sharedPreferencesHelper.getSessionId(context));
             Log.i("apiURL Url Are", apiURL);

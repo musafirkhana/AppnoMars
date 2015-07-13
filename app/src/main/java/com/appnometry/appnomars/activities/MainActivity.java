@@ -134,7 +134,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         main_usertype.setText(existUSER[2]);
         main_userexpire.setText("Expires in " + Tools.dateDifference("" + existUSER[3]) + " Days");
         tv_logout.setOnClickListener(this);
-        initActionBerMenu();
+        //initActionBerMenu();
         fragment = new NewsFeedFragment();
 
         if (fragment != null) {
@@ -180,40 +180,40 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
                 switch (position) {
                     case 0:
-                        action_search.setVisibility(View.GONE);
+                        //action_search.setVisibility(View.GONE);
                         fragment = new NewsFeedFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;
                     case 1:
-                        action_search.setVisibility(View.VISIBLE);
+                       // action_search.setVisibility(View.VISIBLE);
                         fragment = new CouponFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
 
                         break;
                     case 2:
-                        action_search.setVisibility(View.GONE);
+                        //action_search.setVisibility(View.GONE);
                         fragment = new DealsFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
 
                         break;
                     case 3:
-                        action_search.setVisibility(View.GONE);
+                       // action_search.setVisibility(View.GONE);
                         fragment = new EventsFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;
                     case 4:
-                        action_search.setVisibility(View.GONE);
+                       // action_search.setVisibility(View.GONE);
                         fragment = new LocationFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;
 
                     case 5:
-                        action_search.setVisibility(View.GONE);
+                       // action_search.setVisibility(View.GONE);
                         fragment = new ShopFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;
                     case 6:
-                        action_search.setVisibility(View.GONE);
+                       // action_search.setVisibility(View.GONE);
                         fragment = new MyprofileFragment();
                         mDrawerLayout.closeDrawer(Gravity.START);
                         break;

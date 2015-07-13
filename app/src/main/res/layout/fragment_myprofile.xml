@@ -67,7 +67,7 @@
                 android:layout_height="50dp"
                 android:alpha="0.4"
                 android:background="#000"
-                android:hint="@string/sign_confirm_password"
+                android:hint="New Password"
                 android:inputType="textPassword"
                 android:paddingLeft="15dp"
                 android:textColor="@color/google_white"

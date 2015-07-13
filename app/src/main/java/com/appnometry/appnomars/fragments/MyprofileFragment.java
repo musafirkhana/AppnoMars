@@ -26,6 +26,7 @@ import com.appnometry.appnomars.ui.CustomProgressDialog;
 import com.appnometry.appnomars.util.ApiImplementation;
 import com.appnometry.appnomars.util.AppConstant;
 import com.appnometry.appnomars.util.AppJsonUtility;
+import com.appnometry.appnomars.util.CommonUtils;
 import com.appnometry.appnomars.util.HttpRequest;
 import com.appnometry.appnomars.util.SharedPreferencesHelper;
 
@@ -68,6 +69,9 @@ public class MyprofileFragment extends Fragment {
     private EditText mp_courses;
 
     private Button mp_submit_btn;
+    private boolean isVanue=false;
+    private String vanumeName="";
+    private String vanumeID="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -117,8 +121,8 @@ public class MyprofileFragment extends Fragment {
      */
     private void setData() {
         mp_email.setText(AppConstant.myprofileErray[0]);
-        mp_password.setText(AppConstant.myprofileErray[1]);
-        mp_confirmpassword.setText(AppConstant.myprofileErray[1]);
+        //mp_password.setText(AppConstant.myprofileErray[1]);
+        //mp_confirmpassword.setText(AppConstant.myprofileErray[1]);
         mp_firstname.setText(AppConstant.myprofileErray[2]);
         mp_lastname.setText(AppConstant.myprofileErray[3]);
         mp_sex.setText(AppConstant.myprofileErray[4]);
@@ -127,7 +131,9 @@ public class MyprofileFragment extends Fragment {
         mp_city.setText(AppConstant.myprofileErray[7]);
         mp_postcode.setText(AppConstant.myprofileErray[8]);
         mp_country.setText(AppConstant.myprofileErray[9]);
-        mp_courses.setText(AppConstant.myprofileErray[10]);
+        //mp_courses.setText(AppConstant.myprofileErray[10]);
+        getVanume();
+
 
     }
 
@@ -138,14 +144,15 @@ public class MyprofileFragment extends Fragment {
             // TODO Auto-generated method stub
             switch (v.getId()) {
                 case R.id.mp_submit_btn:
-                    if (isRequired() && isPasswodOK()) {
+                    if (isRequired()) {
                         String url = apiImplementation.GenerateFullUrlforUpdate(
                                 sharedPreferencesHelper.getRegId(context),
                                 mp_email.getText().toString().trim(),
+                                mp_password.getText().toString().trim(),
+                                mp_confirmpassword.getText().toString().trim(),
+                                "Phone",
                                 mp_firstname.getText().toString().trim(),
                                 mp_lastname.getText().toString().trim(),
-                                mp_password.getText().toString().trim(),
-                                "Phone",
                                 mp_postcode.getText().toString().trim(),
                                 mp_address.getText().toString().trim(),
                                 mp_city.getText().toString().trim(),
@@ -153,8 +160,7 @@ public class MyprofileFragment extends Fragment {
                                 "Android",
                                 mp_sex.getText().toString().trim(),
                                 mp_birthday.getText().toString().trim(),
-                                "",
-                                "",
+                                AppConstant.myprofileErray[10].toString().trim(),
                                 "",
                                 "");
                         Log.i("URL Are ",url);
@@ -171,6 +177,7 @@ public class MyprofileFragment extends Fragment {
                     showDatePicker();
                     break;
                 case R.id.mp_courses:
+                    isVanue=true;
                     Intent intent=new Intent(getActivity(),VunueListActivity.class);
                     startActivity(intent);
 
@@ -178,6 +185,23 @@ public class MyprofileFragment extends Fragment {
             }
         }
     };
+
+    private String getVanume(){
+        if(isVanue){
+            vanumeName=AppConstant.vanueName;
+            vanumeID=AppConstant.vanueID;
+            if(getNumberOfVanue(vanumeName).equalsIgnoreCase("0")){
+                mp_courses.setText("Select Courses");
+            }else {
+                mp_courses.setText(getNumberOfVanue(vanumeName)+" Places Selected");
+            }
+
+        }else {
+            mp_courses.setText(getNumberOfVanue(AppConstant.myprofileErray[10])+" Places Selected");
+        }
+
+        return "";
+    }
 
     public boolean isRequired() {
 
@@ -459,6 +483,7 @@ public class MyprofileFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(results);
                 if (jsonObject.getString("status").equalsIgnoreCase("true")) {
                     progressDialog.dismiss();
+                  
                     Toast.makeText(context,"Saved",Toast.LENGTH_LONG).show();
                 } else {
                     progressDialog.dismiss();
@@ -472,5 +497,9 @@ public class MyprofileFragment extends Fragment {
 
         }
 
+    }
+    private String getNumberOfVanue(String places){
+        int numberOfPlaces = CommonUtils.getNumberOfCoupon(places);
+        return ""+(numberOfPlaces-1);
     }
 }

@@ -54,6 +54,7 @@ public class AppJsonUtility {
                 AppConstant.myprofileErray[8] = jsonObject1.getString("postcode");
                 AppConstant.myprofileErray[9] = jsonObject1.getString("country");
                 AppConstant.myprofileErray[10] = jsonObject1.getString("user_venues");
+                AppConstant.myprofileErray[11] = jsonObject1.getString("userId");
                 return "Success";
             } else {
                 return jsonObject.getString("message").toString();

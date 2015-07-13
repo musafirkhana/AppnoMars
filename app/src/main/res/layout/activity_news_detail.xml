@@ -158,11 +158,10 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".5"
                         android:layout_gravity="center"
-                        android:background="@drawable/down_arrow" />
+                        android:background="@drawable/arrow_child" />
 
 
                 </LinearLayout>
